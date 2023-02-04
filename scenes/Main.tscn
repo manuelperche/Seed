@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/wall.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Background.gd" type="Script" id=2]
+[ext_resource path="res://src/Characters/MainCharacter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/TileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/TileMap.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 516.547, 29.0156 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 511.938 )
 
 [node name="Main" type="Node2D"]
 
@@ -14,9 +23,31 @@ centered = false
 script = ExtResource( 2 )
 
 [node name="Background1" type="Sprite" parent="."]
-position = Vector2( 1024, 0 )
+position = Vector2( 1025, -1 )
 rotation = 1.5708
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
+
+[node name="MainCharacter" parent="." instance=ExtResource( 3 )]
+position = Vector2( 520, 520 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 521.547, 1031 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -6, 496 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1027, 490 )
+shape = SubResource( 2 )
+
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+cell_size = Vector2( 32, 32 )
+tile_data = PoolIntArray( 917504, 1, 0, 1310730, 0, 0, 1310731, 3, 0, 1310738, 0, 0, 1376257, 0, 0, 1376258, 3, 0, 1376262, 0, 0, 1376263, 3, 0, 1376270, 0, 0, 1441812, 0, 0, 1507332, 0, 0, 1572864, 0, 0, 1572871, 0, 0, 1572872, 3, 0, 1572878, 0, 0, 1572882, 0, 0, 1638402, 0, 0, 1638411, 0, 0, 1638412, 3, 0, 1703940, 0, 0, 1703952, 0, 0, 1835010, 0, 0, 1900544, 0, 0 )
+script = ExtResource( 5 )
